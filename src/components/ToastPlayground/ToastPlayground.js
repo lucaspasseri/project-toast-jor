@@ -1,6 +1,7 @@
 import React from "react";
 
 import Button from "../Button";
+import Toast from "../Toast";
 
 import styles from "./ToastPlayground.module.css";
 
@@ -14,9 +15,15 @@ const VARIANT_OPTIONS = [
 function ToastPlayground() {
 	const [message, setMessage] = React.useState("");
 	const [variant, setVariant] = React.useState("notice");
+	const [toastIsOn, setToastIsOn] = React.useState(false);
 
 	const handleButton = () => {
 		console.log(message, variant);
+		setToastIsOn(true);
+	};
+
+	const closeToast = () => {
+		setToastIsOn(false);
 	};
 
 	return (
@@ -25,6 +32,10 @@ function ToastPlayground() {
 				<img alt='Cute toast mascot' src='/toast.png' />
 				<h1>Toast Playground</h1>
 			</header>
+
+			{toastIsOn && (
+				<Toast closeToast={closeToast} message={message} variant={variant} />
+			)}
 
 			<div className={styles.controlsWrapper}>
 				<div className={styles.row}>
