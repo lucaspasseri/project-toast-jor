@@ -18,11 +18,10 @@ const ICONS_BY_VARIANT = {
 	error: AlertOctagon,
 };
 
-function Toast({ toast }) {
-	const { id, variant, message, handleClose } = toast;
+function Toast({ toast, dismiss }) {
+	const { variant, message } = toast;
 
 	const variantStyle = styles?.[variant] ?? "";
-
 	const Icon = ICONS_BY_VARIANT[variant];
 
 	return (
@@ -38,7 +37,7 @@ function Toast({ toast }) {
 			</p>
 			<button
 				className={styles.closeButton}
-				onClick={() => handleClose(id)}
+				onClick={dismiss}
 				aria-label='Dismiss message'
 				aria-live='off'
 			>
