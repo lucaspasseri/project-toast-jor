@@ -9,7 +9,12 @@ function ToastShelf() {
 	return (
 		<>
 			{toastArr.length > 0 && (
-				<ol className={styles.wrapper}>
+				<ol
+					className={styles.wrapper}
+					role='region'
+					aria-live='polite'
+					aria-label='Notification'
+				>
 					{toastArr.map(toast => {
 						return (
 							<li key={toast.id} className={styles.toastWrapper}>

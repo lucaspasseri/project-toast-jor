@@ -25,6 +25,21 @@ function ToastProvider({ children }) {
 		setToastArr(newToastArr);
 	};
 
+	React.useEffect(() => {
+		const handleEscapeKey = e => {
+			const key = e.code;
+			if (key !== "Escape") return;
+
+			setToastArr([]);
+		};
+
+		document.addEventListener("keydown", handleEscapeKey);
+
+		return () => {
+			document.removeEventListener("keydown", handleEscapeKey);
+		};
+	}, []);
+
 	return (
 		<ToastContext.Provider value={{ toastArr, addToast }}>
 			{children}
